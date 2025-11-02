@@ -19,18 +19,22 @@
         var redirectUri = 'https://amit-rajput2007.github.io';
         var scope = 'web';
 
+        // const generateAuthUrl = () => {
+        // const buttonElem = document.querySelector("#loginWithSalesforce");
+
+        //if (buttonElem) {
+        //  buttonElem.addEventListener("click", () => {
+        //return window.location.href = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+
+
+        //})
+        //}
+        //}
         const generateAuthUrl = () => {
-            // const buttonElem = document.querySelector("#loginWithSalesforce");
+            return `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+        };
 
-            //if (buttonElem) {
-            //  buttonElem.addEventListener("click", () => {
-            return window.location.href = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
-
-
-            //})
-            //}
-        }
-
+        document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
 
 
         const authorizationCode = () => {
