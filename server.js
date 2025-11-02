@@ -25,8 +25,17 @@ const TOKEN_URL = "https://login.salesforce.com/services/oauth2/token"; // Sales
 app.post("/getAccessToken", async (req, res) => {
     const auth_code = req.body.code;
     try {
-        const response = axios.post(TOKEN_URL, `grant_type=authorization_code&code=${auth_code}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}`,
-            { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        const response = axios.post(
+            TOKEN_URL, null, {
+            params: {
+                grant_type: "authorization_code",
+                code: auth_code,
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                redirect_uri: REDIRECT_URI,
+            }
+        }
+        )
     }
     catch (error) {
         console.log('error ', error)
@@ -38,3 +47,6 @@ const PORT = process.env.port || 3000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 })
+
+//`grant_type=authorization_code&code=${auth_code}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}`,
+//   { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
