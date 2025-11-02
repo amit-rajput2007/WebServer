@@ -36,7 +36,7 @@ app.post("/getAccessToken", async (req, res) => {
             }
         }
         )
-        res.json({ accessToken: response.data });
+        res.json({ accessToken: response.data.access_token });
     }
     catch (error) {
         console.log('error ', error)
