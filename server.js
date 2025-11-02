@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 
-app.use(cors());
+app.use(cors({ origin: true, Credentials: true }));
 /*app.use(cors({
     origin: ["https://amit-rajput2007.github.io", "https://amit-rajput2007.github.io/WebServer"],// Correct origi
     methods: ["GET", "POST"], // Allow specific methods
