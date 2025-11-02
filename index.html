@@ -82,11 +82,11 @@
         else {
             document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
         }
-        /* document.querySelector("#loginWithSalesforce").addEventListener("click", () => {
-             console.log('auth_code ', auth_code);
-             exchangeToken(auth_code);
- 
-         })*/
+        document.querySelector("#loginWithSalesforce").addEventListener("click", () => {
+            console.log('auth_code ', auth_code);
+            exchangeToken(auth_code);
+
+        })
 
 
     </script>
