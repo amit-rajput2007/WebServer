@@ -3,6 +3,12 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
+const dotenv = require("dotenv");
+
+// Load .env file only for development
+if (process.env.NODE_ENV !== "production") {
+    dotenv.config();
+}
 
 
 
@@ -15,7 +21,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require('dotenv').config();
+
 const CLIENT_ID = process.env.client_id;
 const CLIENT_SECRET = process.env.client_secret;
 
