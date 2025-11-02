@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const CLIENT_ID = Process.env.client_id;
 const CLIENT_SECRET = Process.env.client_secret;
 
-const REDIRECT_URI = "https://amit-rajput2007.github.io/SinglePage"; // Your GitHub Pages URL
+const REDIRECT_URI = "https://amit-rajput2007.github.io/WebServer"; // Your GitHub Pages URL
 const TOKEN_URL = "https://login.salesforce.com/services/oauth2/token"; // Salesforce Token Endpoint
 
 app.post("getAccessToken", async (req, res) => {
