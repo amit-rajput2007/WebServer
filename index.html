@@ -16,7 +16,7 @@
     <script>
         const authEndpoint = "https://orgfarm-2b36a5883e-dev-ed.develop.lightning.force.com/services/oauth2/authorize"; // Use "test.salesforce.com" for Sandbox environments
         var clientId = '3MVG97L7PWbPq6Uzh6BOO0UcrtX0dJzfRhowVhD0VkzXxcWZXIoza7o1zCDipqcwAahtOgvDtCTbkc2h6aV0M';
-        var redirectUri = 'https://amit-rajput2007.github.io';
+        var redirectUri = 'https://amit-rajput2007.github.io/WebServer';
         var scope = 'web';
 
         // const generateAuthUrl = () => {
@@ -37,7 +37,7 @@
         document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
 
 
-        const authorizationCode = () => {
+        const getAuthorizationCode = () => {
             const urlParams = new URLSearchParams(window.location.search);
             console.log('urlParams ', urlParams);
             return urlParams.get("code");
@@ -74,7 +74,7 @@
                     "<p style='color: red;'>Error: " + error.message + "</p>";
             }
         };
-        const auth_code = authorizationCode();
+        const auth_code = getAuthorizationCode();
         console.log('auth_code ', auth_code);
         if (auth_code) {
             exchangeToken(auth_code);
@@ -82,11 +82,11 @@
         else {
             document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
         }
-        document.querySelector("#loginWithSalesforce").addEventListener("click", () => {
-            console.log('auth_code ', auth_code);
-            exchangeToken(auth_code);
-
-        })
+        /* document.querySelector("#loginWithSalesforce").addEventListener("click", () => {
+             console.log('auth_code ', auth_code);
+             exchangeToken(auth_code);
+ 
+         })*/
 
 
     </script>
