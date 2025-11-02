@@ -43,7 +43,33 @@
             return urlParams.get("code");
         }
 
+        const contacts = (accessToken) => {
+            fetch('https://orgfarm-2b36a5883e-dev-ed.develop.lightning.force.com/services/data/v65.0/sobjects/Contact/003g5000001ISGbAAO', {
+                Method: 'GET',
+                headers: {
+                    'Content-Type': 'Application/JSON',
+                    'Authorization': `Bearer ${accessToken}`
+                }
 
+
+            }).then((response) => {
+                console.log('response ', response);
+                if (!response.ok) {
+                    console.log('Error  getting contact data ', response.status);
+
+                }
+                return response.json();
+
+            }).then((data) => {
+
+                console.log('contact datat ', data);
+
+            }).catch((error) => {
+
+                console.error('Error fetching protected resource:', error);
+            })
+
+        }
 
         const exchangeToken = async (authorizationCode) => {
             let accessToken = '';
@@ -92,33 +118,7 @@
 
         })
 
-        const contacts = (accessToken) => {
-            fetch('https://orgfarm-2b36a5883e-dev-ed.develop.lightning.force.com/services/data/v65.0/sobjects/Contact/003g5000001ISGbAAO', {
-                Method: 'GET',
-                headers: {
-                    'Content-Type': 'Application/JSON',
-                    'Authorization': `Bearer ${accessToken}`
-                }
 
-
-            }).then((response) => {
-                console.log('response ', response);
-                if (!response.ok) {
-                    console.log('Error  getting contact data ', response.status);
-
-                }
-                return response.json();
-
-            }).then((data) => {
-
-                console.log('contact datat ', data);
-
-            }).catch((error) => {
-
-                console.error('Error fetching protected resource:', error);
-            })
-
-        }
 
 
 
