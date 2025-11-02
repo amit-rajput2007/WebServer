@@ -31,7 +31,7 @@ app.post("/getAccessToken", async (req, res) => {
     catch (error) {
         console.log('error ', error)
     }
-    res.json({ accessToken: response.data });
+    res.json({ accessToken: response.data.access_token });
 
 })
 const PORT = Process.env.port || 3000;
