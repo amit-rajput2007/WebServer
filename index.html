@@ -80,7 +80,7 @@
         console.log('auth_code ', auth_code);
         if (auth_code) {
             const accessToken = exchangeToken(auth_code);
-            data(accessToken);
+            contacts(accessToken);
         }
         else {
             document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
@@ -92,7 +92,7 @@
 
         })
 
-        const data = (accessToken) => {
+        const contacts = (accessToken) => {
             fetch('https://orgfarm-2b36a5883e-dev-ed.develop.lightning.force.com/services/data/v65.0/sobjects/Contact/003g5000001ISGbAAO', {
                 Method: 'GET',
                 headers: {
