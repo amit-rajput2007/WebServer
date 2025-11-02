@@ -5,13 +5,13 @@ const cors = require("cors");
 const app = express();
 
 
-app.use(cors({ origin: true, Credentials: true }));
-/*app.use(cors({
-    origin: ["https://amit-rajput2007.github.io", "https://amit-rajput2007.github.io/WebServer"],// Correct origi
+app.use(cors());
+app.use(cors({
+    origin: "https://amit-rajput2007.github.io",// Correct origi
     methods: ["GET", "POST"], // Allow specific methods
     allowedHeaders: ["Content-Type"], // Allow specific headers
     credentials: true, // (Optional) Allow cookies and credentials if required
-}));*/
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
