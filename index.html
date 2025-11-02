@@ -40,14 +40,7 @@
         const authorizationCode = () => {
             const urlParams = new URLSearchParams(window.location.search);
             console.log('urlParams ', urlParams);
-
-
-            //
             return urlParams.get("code");
-
-
-
-
         }
 
 
@@ -61,7 +54,7 @@
                     },
                     body: JSON.stringify({ code: authorizationCode }),
                 });
-
+                console.log('response ', response)
                 if (!response.ok) {
                     throw new Error("Failed to exchange token");
                 }

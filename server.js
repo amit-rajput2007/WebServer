@@ -36,13 +36,13 @@ app.post("/getAccessToken", async (req, res) => {
             }
         }
         )
+        res.json({ accessToken: response.data });
     }
     catch (error) {
         console.log('error ', error)
     }
-    res.json({ accessToken: response.data.access_token });
-
 })
+
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
