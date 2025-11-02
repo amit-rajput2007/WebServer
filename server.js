@@ -6,7 +6,6 @@ const app = express();
 
 
 
-
 app.use(cors({
     origin: "https://amit-rajput2007.github.io", // Correct origin
     methods: ["GET", "POST"], // Allow specific methods
@@ -17,8 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const CLIENT_ID = process.env.client_id;
-const CLIENT_SECRET = process.env.client_secret;
+//const CLIENT_ID = process.env.client_id;
+//const CLIENT_SECRET = process.env.client_secret;
 
 const REDIRECT_URI = "https://amit-rajput2007.github.io/WebServer"; // Your GitHub Pages URL
 const TOKEN_URL = "https://login.salesforce.com/services/oauth2/token"; // Salesforce Token Endpoint
