@@ -7,7 +7,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: "https://amit-rajput2007.github.io/WebServer", // Correct origin
+    origin: "https://amit-rajput2007.github.io", // Correct origin
     methods: ["GET", "POST"], // Allow specific methods
     allowedHeaders: ["Content-Type"], // Allow specific headers
     credentials: true, // (Optional) Allow cookies and credentials if required
