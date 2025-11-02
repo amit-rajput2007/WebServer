@@ -16,13 +16,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//const CLIENT_ID = process.env.client_id;
-//const CLIENT_SECRET = process.env.client_secret;
+const CLIENT_ID = process.env.client_id;
+const CLIENT_SECRET = process.env.client_secret;
 
 const REDIRECT_URI = "https://amit-rajput2007.github.io/WebServer"; // Your GitHub Pages URL
 const TOKEN_URL = "https://login.salesforce.com/services/oauth2/token"; // Salesforce Token Endpoint
 
-app.post("getAccessToken", async (req, res) => {
+app.post("/getAccessToken", async (req, res) => {
     const auth_code = req.body.code;
     try {
         const response = axios.post(TOKEN_URL, {
@@ -39,8 +39,9 @@ app.post("getAccessToken", async (req, res) => {
         console.log('error ', error)
     }
     res.json({ accessToken: response.data });
-    const PORT = Process.env.port || 3000;
-    app.listen(PORT, () => {
-        console.log(`Server started on port ${PORT}`);
-    })
+
+})
+const PORT = Process.env.port || 3000;
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 })
