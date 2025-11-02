@@ -3,12 +3,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
-const dotenv = require("dotenv");
 
-// Load .env file only for development
-if (process.env.NODE_ENV !== "production") {
-    dotenv.config();
-}
 
 
 
