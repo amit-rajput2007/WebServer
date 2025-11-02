@@ -4,7 +4,7 @@ const axios = require("axios");
 const cors = require("cors");
 const app = express();
 
-
+const FRONTEND_ORIGIN = "https://amit-rajput2007.github.io/WebServer";
 
 app.use(cors({
     origin: "https://amit-rajput2007.github.io",// Correct origi
