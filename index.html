@@ -16,19 +16,19 @@
     <script>
         const authEndpoint = "https://orgfarm-2b36a5883e-dev-ed.develop.lightning.force.com/services/oauth2/authorize"; // Use "test.salesforce.com" for Sandbox environments
         var clientId = '3MVG97L7PWbPq6Uzh6BOO0UcrtX0dJzfRhowVhD0VkzXxcWZXIoza7o1zCDipqcwAahtOgvDtCTbkc2h6aV0M';
-        var redirectUri = 'https://amit-rajput2007.github.io/WebServer';
+        var redirectUri = 'https://amit-rajput2007.github.io';
         var scope = 'web';
 
         const generateAuthUrl = () => {
-            const buttonElem = document.querySelector("#loginWithSalesforce");
+            // const buttonElem = document.querySelector("#loginWithSalesforce");
 
-            if (buttonElem) {
-                buttonElem.addEventListener("click", () => {
-                    return window.location.href = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+            //if (buttonElem) {
+            //  buttonElem.addEventListener("click", () => {
+            return window.location.href = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
 
 
-                })
-            }
+            //})
+            //}
         }
 
 
@@ -36,11 +36,13 @@
         const authorizationCode = () => {
             const urlParams = new URLSearchParams(window.location.search);
             console.log('urlParams ', urlParams);
-            if (urlParams.get("code")) {
-                const authorizationCode = urlParams.get("code");
 
 
-            }
+            return urlParams.get("code");
+
+
+
+
         }
 
 
@@ -74,13 +76,18 @@
             }
         };
         const auth_code = authorizationCode();
+        console.log('auth_code ', auth_code);
         if (auth_code) {
             exchangeToken(auth_code);
         }
         else {
             document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
         }
+        document.querySelector("#loginWithSalesforce").addEventListener("click", () => {
+            console.log('auth_code ', auth_code);
+            exchangeToken(auth_code);
 
+        })
 
 
     </script>
