@@ -25,7 +25,7 @@ const TOKEN_URL = "https://login.salesforce.com/services/oauth2/token"; // Sales
 app.post("/getAccessToken", async (req, res) => {
     const auth_code = req.body.code;
     try {
-        const response = axios.post(
+        const response = await axios.post(
             TOKEN_URL, null, {
             params: {
                 grant_type: "authorization_code",
