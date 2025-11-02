@@ -5,23 +5,82 @@
 </head>
 
 <body>
-    <button id="loginwithsalesforce">
-        Log In With Salesforce
-
-    </button>
+    <h1>Salesforce OAuth Example</h1>
+    <div id="content">
+        <a id="loginWithSalesforce" class="button" href="#">
+            Log in with Salesforce
+        </a>
+        <div id="result"></div>
+    </div>
 
     <script>
-        const authEndpoint = "https://login.salesforce.com/services/oauth2/authorize"; // Use "test.salesforce.com" for Sandbox environments
+        const authEndpoint = "https://orgfarm-2b36a5883e-dev-ed.develop.lightning.force.com/services/oauth2/authorize"; // Use "test.salesforce.com" for Sandbox environments
         var clientId = '3MVG97L7PWbPq6Uzh6BOO0UcrtX0dJzfRhowVhD0VkzXxcWZXIoza7o1zCDipqcwAahtOgvDtCTbkc2h6aV0M';
         var redirectUri = 'https://amit-rajput2007.github.io/WebServer';
+        var scope = 'web';
 
-        const buttonElem = document.querySelector("#loginwithsalesforce");
+        const generateAuthUrl = () => {
+            const buttonElem = document.querySelector("#loginWithSalesforce");
 
-        if (buttonElem) {
-            buttonElem.addEventListener("click", () => {
-                window.location.href = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}`;
-            })
+            if (buttonElem) {
+                buttonElem.addEventListener("click", () => {
+                    return window.location.href = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+
+
+                })
+            }
         }
+
+
+
+        const authorizationCode = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            console.log('urlParams ', urlParams);
+            if (urlParams.get("code")) {
+                const authorizationCode = urlParams.get("code");
+
+
+            }
+        }
+
+
+
+        const exchangeToken = async (authorizationCode) => {
+            try {
+                const response = await fetch("https://singlepage-fy8q.onrender.com/getAccessToken", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ code: authorizationCode }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to exchange token");
+                }
+
+                const data = await response.json();
+                console.log("data:", data);
+                console.log("Access Token:", data.accessToken);
+
+                document.getElementById("result").innerHTML =
+                    "<p style='color: green;'>Access Token: " +
+                    data.accessToken +
+                    "</p>";
+            } catch (error) {
+                console.error("Error exchanging token:", error);
+                document.getElementById("result").innerHTML =
+                    "<p style='color: red;'>Error: " + error.message + "</p>";
+            }
+        };
+        const auth_code = authorizationCode();
+        if (auth_code) {
+            exchangeToken(auth_code);
+        }
+        else {
+            document.getElementById("loginWithSalesforce").setAttribute("href", generateAuthUrl());
+        }
+
 
 
     </script>
